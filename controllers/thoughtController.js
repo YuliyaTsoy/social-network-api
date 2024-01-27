@@ -3,13 +3,13 @@ const { Thought, User } = require("../models");
 
 const thoughtController = {
   // get all thoughts
-  getThought(req, res) {
+  getAllThoughts(req, res) {
     Thought.find({})
       .then((thought) => res.json(thought))
       .catch((err) => res.status(500).json(err));
   },
   // get single thought
-  getSingleThought(req, res) {
+  getThoughtById(req, res) {
     Thought.findOne({ _id: req.params.thoughtId })
       .select("-__v")
       .then((thought) =>
@@ -70,7 +70,7 @@ const thoughtController = {
       .catch((err) => res.status(500).json(err));
   },
   //create reaction
-  createReaction(req, res) {
+  addReaction(req, res) {
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
       { $addToSet: { reactions: req.body } },
