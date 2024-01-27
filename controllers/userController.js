@@ -15,7 +15,7 @@ module.exports = {
       .select("-__v")
       .then((user) =>
         !user
-          ? res.status(404).json({ message: "No User find with that ID!" })
+          ? res.status(404).json({ message: "Cannot find user with this Id" })
           : res.json(user)
       )
       .catch((err) => res.status(500).json(err));
@@ -38,21 +38,21 @@ module.exports = {
     )
       .then((user) =>
         !user
-          ? res.status(404).json({ message: "There is no user with this Id" })
+          ? res.status(404).json({ message: "Cannot find user with this Id!" })
           : res.json(user)
       )
       .catch((err) => res.status(500).json(err));
   },
   //delete a user
-  //remove a user's associated thoughts when deleted.
+  //BONUS: Remove a user's associated thoughts when deleted.
   deleteUser(req, res) {
     User.findOneAndDelete({ _id: req.params.userId })
       .then((user) =>
         !user
-          ? res.status(404).json({ message: "There is no user with this Id" })
+          ? res.status(404).json({ message: "Cannot find user with this Id!" })
           : Thought.deleteMany({ _id: { $in: user.thoughts } })
       )
-      .then(() => res.json({ message: "There is no user with this Id" }))
+      .then(() => res.json({ message: "User and Thought deleted!" }))
       .catch((err) => res.status(500).json(err));
   },
   //add a friend
@@ -64,7 +64,7 @@ module.exports = {
     )
       .then((user) =>
         !user
-          ? res.status(404).json({ message: "There is no user with this Id" })
+          ? res.status(404).json({ message: "Cannot find user with this Id!" })
           : res.json(user)
       )
       .catch((err) => res.status(500).json(err));
@@ -79,7 +79,7 @@ module.exports = {
       .then(
         (user) =>
           !user
-            ? res.status(404).json({ message: "There is no user with this Id" })
+            ? res.status(404).json({ message: "Cannot find user with this Id!" })
             : res.json(user)
       )
       .catch((err) => res.status(500).json(err));
