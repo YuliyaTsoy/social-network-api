@@ -1,5 +1,5 @@
 const { Schema, model, Types } = require("mongoose");
-// import dateFormat object to format timestamps
+// import dateFormat.js to format timestamps
 const dateFormat = require("../utils/dateFormat");
 
 // Reaction Schema
