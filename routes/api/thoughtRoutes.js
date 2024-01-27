@@ -20,11 +20,13 @@ router.route("/")
 
 // GET, PUT, DELETE routes by thoughts id: /api/thoughts/:id
 router
-  .route("/:id")
+  .route("/:thoughtId")
   .get(getThoughtById)
   .put(updateThought)
   .delete(deleteThought);
 
-router.route("/:thoughtId/reactions").post(addReaction).delete(deleteReaction);
+router.route("/:thoughtId/reactions/:reactionId")
+.post(addReaction)
+.delete(deleteReaction);
 
 module.exports = router;
